@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../mystyle.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <%- include('../Components/sidebar.ejs') %>
+      <section class="add">
+        <form action="/pages/add.html" method="post" style="margin-top: 90px">
+          <div class="text">إضافة الطلاب</div>
+          <div class="flex">
+            <div class="col-md-6">
+              <label for="inputfirstName4" class="form-label">الاسم:</label>
+              <br />
+              <input
+                name="firstName"
+                placeholder="صابر..."
+                type="text"
+                class="form-control"
+                id="inputfirstName4"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="inputlastName4" class="form-label">اللقب:</label>
+              <br />
+              <input
+                name="lastName"
+                placeholder="طلحاوي..."
+                type="text"
+                class="form-control"
+                id="inputlastName4"
+              />
+            </div>
+          </div>
+          <div class="flex">
+            <div class="col-md-6">
+              <label for="inputlastName4" class="form-label">رقم الطالب:</label>
+              <br />
+              <input
+                name="studentNumber"
+                type="text"
+                class="form-control"
+                id="number"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="inputCountry" class="form-label"
+                >الصف الدراسي أو الفصل:</label
+              >
+              <br />
+              <select name="studentClass" id="inputCountry" class="form-select">
+                <option selected hidden disabled>اختار من هنا ...</option>
+                <option>السنة أولى ليسانس</option>
+                <option>السنة الثانية ليسانس</option>
+                <option>السنة الثالثة ليسانس</option>
+                <option>السنة أولى ماستر</option>
+                <option>السنة الثانية ماستر</option>
+                <option>السنة الأولى دكتورة</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="col-md-6">
+              <label for="inputemail4" class="form-label">الايمايل:</label>
+              <br />
+              <input
+                name="email"
+                placeholder="ali@gmail.com"
+                type="email"
+                class="form-control"
+                id="inputemail4"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="inputtele4" class="form-label">رقم الهاتف:</label>
+              <br />
+              <input
+                name="phoneNumber"
+                placeholder="011987899"
+                type="number"
+                class="form-control"
+                id="inputtele4"
+              />
+            </div>
+          </div>
+          <div class="flex">
+            <div class="col-md-6">
+              <label for="inputage4" class="form-label">تاريخ الميلاد:</label>
+              <br />
+              <input type="date" id="birthdate" name="dateBirth" />
+            </div>
+            <div class="col-md-6">
+              <label for="inputCountry" class="form-label">مكان الميلاد:</label>
+              <br />
+              <select name="placeBirth" id="inputCountry" class="form-select">
+                <option selected hidden disabled>اختار من هنا ...</option>
+                <option>الشلف</option>
+                <option>وهران</option>
+                <option>البليدة</option>
+                <option>عين الدفلى</option>
+                <option>مستغانم</option>
+                <option>جيجل</option>
+                <option>سطيف</option>
+                <option>تيارت</option>
+                <option>المسيلة</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="col-md-6">
+              <label for="inputGender" class="form-label">الجنس:</label>
+              <br />
+              <select name="gender" id="inputGender" class="form-select">
+                <option selected hidden disabled>اختار من هنا ...</option>
+                <option>ذكر</option>
+                <option>مؤنث</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="inputSpeciality" class="form-label">التخصص:</label>
+              <br />
+              <select name="speciality" id="inputGender" class="form-select">
+                <option selected hidden disabled>اختار من هنا ...</option>
+                <option>إعلام آلي</option>
+                <option>رياضيات</option>
+                <option>علوم و تكنولوجيا</option>
+                <option>طب</option>
+                <option>طب أسنان</option>
+                <option>إنجليزية</option>
+                <option>حقوق</option>
+                <option>آداب</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">إضافة الطالب</button>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

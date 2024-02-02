@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../mystyle.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <%- include('../Components/sidebar.ejs') %>
+      <section class="view">
+        <div class="container">
+          <div class="text">معلومات الطالب</div>
+          <nav
+            style="width: 88%; justify-content: space-between; margin: 15px 0"
+            class="viewNav flex px-2 mt-4 d-flex flex-wrap justify-content-between"
+            aria-label="breadcrumb"
+          >
+            <ol class="flex" style="gap: 10px; list-style: none">
+              <li class="breadcrumb-item">
+                <a href="/home" style="color: #0072d3">الرئيسية</a>
+              </li>
+              /
+              <li class="breadcrumb-item active" aria-current="page">
+                <%= info.firstName %> <%= info.lastName %>
+              </li>
+            </ol>
+            <p>
+              <span class="fw-medium fs-6">رقم الطالب :</span>
+              <%= info._id %>
+            </p>
+          </nav>
+
+          <table class="student-table">
+            <thead>
+              <tr>
+                <th scope="col">اللقب</th>
+                <td><%= info.firstName %></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">الاسم</th>
+                <td><%= info.lastName %></td>
+              </tr>
+              <tr>
+                <th scope="row">رقم الطالب</th>
+                <td><%= info.studentNumber %></td>
+              </tr>
+              <tr>
+                <th scope="row">المستوى الدراسي للطالب</th>
+                <td><%= info.studentClass %></td>
+              </tr>
+              <tr>
+                <th scope="row">التخصص</th>
+                <td><%= info.speciality %></td>
+              </tr>
+              <tr>
+                <th scope="row">رقم الهاتف</th>
+                <td><%= info.phoneNumber %></td>
+              </tr>
+
+              <tr>
+                <th scope="row">الايمايل</th>
+                <td style="font-family: 'Poppins', sans-serif">
+                  <%= info.email %>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">الجنس</th>
+                <td><%= info.gender %></td>
+              </tr>
+
+              <tr>
+                <th scope="row">تاريخ الميلاد</th>
+                <td><%= moment(info.dateBirth).format('L'); %></td>
+              </tr>
+
+              <tr>
+                <th scope="row">مكان الميلاد</th>
+                <td><%= info.placeBirth %></td>
+              </tr>
+
+              <tr>
+                <th scope="row">تم اضافته يوم</th>
+                <td
+                  style="
+                    direction: ltr;
+                    text-align: end;
+                    font-family: 'Poppins', sans-serif;
+                  "
+                >
+                  <%= moment(info.createdAt).fromNow(); %>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">آخر تعديل</th>
+                <td
+                  style="
+                    direction: ltr;
+                    text-align: end;
+                    font-family: 'Poppins', sans-serif;
+                  "
+                >
+                  <%= moment(info.updatedAt).fromNow(); %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="../script.js"></script>
+  </body>
+</html>

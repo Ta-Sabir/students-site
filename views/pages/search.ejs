@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="./mystyle.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <%- include('../Components/sidebar.ejs') %>
+      <section class="home">
+        <% if (info.length === 0) { %>
+        <h1 style="text-align: center; margin-top: 100px">
+          لا يوجد طالب بهكذا اسم (ابحث باللقب أو الاسم فقط ) .
+        </h1>
+        <% } %> <% if (info.length > 0) { %>
+        <div class="container">
+          <div class="text">البحث عن طالب</div>
+          <!-- <h1 style="text-align: center; margin-top: 4rem">لا توجد بيانات </h1> -->
+          <table class="student-table">
+            <thead>
+              <tr>
+                <th>الرقم</th>
+                <th>الاسم الكامل</th>
+                <th>الفصل الدراسي</th>
+                <th>التخصص</th>
+                <th>مكان الميلاد</th>
+                <th>الجنس</th>
+                <th>الاعدادات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% info.forEach((item,index) => { %>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= item.firstName %> <%= item.lastName %></td>
+                <td><%= item.studentClass %></td>
+                <td><%= item.speciality %></td>
+                <td><%= item.placeBirth %></td>
+                <td><%= item.gender %></td>
+                <td style="display: flex; gap: 10px">
+                  <a href="./student/<%= item._id %>"> مشاهدة </a>
+                  <a href="./edit/<%= item._id %>"> تعديل </a>
+                  <form
+                    action="/edit/<%= item._id %>?_method=DELETE"
+                    method="post"
+                  >
+                    <button>حذف</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

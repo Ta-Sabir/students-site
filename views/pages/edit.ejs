@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link rel="stylesheet" href="../mystyle.css" />
+  <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <main>
+    <%- include('../Components/sidebar.ejs') %>
+      <section class="edit">
+        <div>
+          <form action="/edit/<%= info._id %>?_method=PUT" method="post">
+            <div class="text">تعديل معلومات الطالب</div>
+            <nav style="width: 88%; justify-content: space-between; margin: 15px 0"
+              class="viewNav flex px-2 mt-4 d-flex flex-wrap justify-content-between" aria-label="breadcrumb">
+              <ol class="flex" style="gap: 10px; list-style: none">
+                <li class="breadcrumb-item">
+                  <a href="/home" style="color: #0072d3">الرئيسية</a>
+                </li>
+                /
+                <li class="breadcrumb-item active" aria-current="page">
+                  <%= info.firstName %> <%= info.lastName %>
+                </li>
+              </ol>
+              <p>
+                <span class="fw-medium fs-6">رقم الطالب :</span>
+                6591b60757c1c3bf0c467170
+              </p>
+            </nav>
+            <div class="flex">
+              <div class="col-md-6">
+                <label for="inputfirstName4" class="form-label">الاسم:</label>
+                <br />
+                <input name="firstName" value="<%= info.firstName %>" type="text" class="form-control"
+                  id="inputfirstName4" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputlastName4" class="form-label">اللقب:</label>
+                <br />
+                <input name="lastName" value="<%= info.lastName %>" type="text" class="form-control"
+                  id="inputlastName4" />
+              </div>
+            </div>
+            <div class="flex">
+              <div class="col-md-6">
+                <label for="inputlastName4" class="form-label">رقم الطالب:</label>
+                <br />
+                <input name="studentNumber" value="<%= info.studentNumber %>" type="text" class="form-control" id="number" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputCountry" class="form-label">الصف الدراسي أو الفصل:</label>
+                <br />
+                <select name="studentClass" id="inputCountry" class="form-select">
+                  <option selected hidden disabled>اختار من هنا ...</option>
+                  <option <%="السنة أولى ليسانس"===info.studentClass ? "selected" : null %>>السنة أولى ليسانس</option>
+                  <option <%="السنة الثانية ليسانس"===info.studentClass ? "selected" : null %>>السنة الثانية ليسانس
+                  </option>
+                  <option <%="السنة الثالثة ليسانس"===info.studentClass ? "selected" : null %>>السنة الثالثة ليسانس
+                  </option>
+                  <option <%="السنة أولى ماستر"===info.studentClass ? "selected" : null %>>السنة أولى ماستر</option>
+                  <option <%="السنة الثانية ماستر"===info.studentClass ? "selected" : null %>>السنة الثانية ماستر
+                  </option>
+                  <option <%="السنة الأولى دكتورة"===info.studentClass ? "selected" : null %>>السنة الأولى دكتورة
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="col-md-6">
+                <label for="inputemail4" class="form-label">الايمايل:</label>
+                <br />
+                <input name="email" value="<%= info.email %>" type="email" class="form-control" id="inputemail4" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputtele4" class="form-label">رقم الهاتف:</label>
+                <br />
+                <input name="phoneNumber" value="<%= info.phoneNumber%>" type="number" class="form-control" id="inputtele4" />
+              </div>
+            </div>
+            <div class="flex">
+              <div class="col-md-6">
+                <label for="inputage4" class="form-label">تاريخ الميلاد:</label>
+                <br />
+                <input type="date" id="birthdate" name="dateBirth" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputCountry" class="form-label">مكان الميلاد:</label>
+                <br />
+                <select name="placeBirth" id="inputCountry" class="form-select">
+                  <option selected hidden disabled>اختار من هنا ...</option>
+                  <option <%="الشلف"===info.placeBirth ? "selected" : null %>>الشلف</option>
+                  <option <%="وهران"===info.placeBirth ? "selected" : null %>>وهران</option>
+                  <option <%="الجزائر"===info.placeBirth ? "selected" : null %>>الجزائر</option>
+                  <option <%="البليدة"===info.placeBirth ? "selected" : null %>>البليدة</option>
+                  <option <%="عين الدفلى"===info.placeBirth ? "selected" : null %>>عين الدفلى</option>
+                  <option <%="مستغانم"===info.placeBirth ? "selected" : null %>>مستغانم</option>
+                  <option <%="جيجل"===info.placeBirth ? "selected" : null %>>جيجل</option>
+                  <option <%="سطيف"===info.placeBirth ? "selected" : null %>>سطيف</option>
+                  <option <%="تيارت"===info.placeBirth ? "selected" : null %>>تيارت</option>
+                  <option <%="تلمسان"===info.placeBirth ? "selected" : null %>>تلمسان</option>
+                  <option <%="سيدي بلعباس"===info.placeBirth ? "selected" : null %>>سيدي بلعباس</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="col-md-6">
+                <label for="inputGender" class="form-label">الجنس:</label>
+                <br />
+                <select name="gender" id="inputGender" class="form-select">
+                  <option selected hidden disabled>اختار من هنا ...</option>
+                  <option <%="ذكر"===info.gender ? "selected" : null %>>ذكر</option>
+                  <option <%="مؤنث"===info.gender ? "selected" : null %>>مؤنث</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="inputSpeciality" class="form-label">التخصص:</label>
+                <br />
+                <select name="speciality" id="inputGender" class="form-select">
+                  <option selected hidden disabled>اختار من هنا ...</option>
+                  <option>إعلام آلي</option>
+                  <option>رياضيات</option>
+                  <option>علوم و تكنولوجيا</option>
+                  <option>طب</option>
+                  <option>طب أسنان</option>
+                  <option>إنجليزية</option>
+                  <option>حقوق</option>
+                  <option>آداب</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary">حفظ التعديلات</button>
+            </div>
+          </form>
+          <div class="flex col-12" style="gap: 10px;">
+            <form action="/edit/<%= info._id %>?_method=DELETE" method="post">
+              <button>حذف الطالب</button>
+            </form>
+          </div>
+        </div>
+      </section>
+  </main>
+  <script src="../script.js"></script>
+</body>
+
+</html>

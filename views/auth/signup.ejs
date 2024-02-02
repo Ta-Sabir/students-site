@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إنشاء حساب</title>
+    <link rel="stylesheet" href="./mystyle.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <nav class="sidebar close">
+        <header>
+          <div class="image-text">
+            <div class="text logo-text">
+              <span class="name">الشعار</span>
+            </div>
+          </div>
+          <i class="bx bx-chevron-right toggle"></i>
+        </header>
+        <div class="menu-bar">
+          <div class="menu">
+            <div>
+              <form
+                action="/search"
+                method="post"
+                class="flex search-button"
+                style="align-items: center; gap: 7px"
+                role="search"
+              >
+                <li class="search-box">
+                  <i class="bx bx-search icon"></i>
+                  <input type="text" name="serachText" />
+                </li>
+                <button type="submit">بحث</button>
+              </form>
+            </div>
+            <ul class="menu-links">
+              <li class="nav-link">
+                <a href="/signup">
+                  <i class="bx bx-home-alt icon"></i>
+                  <span class="text nav-text">إنشاء حساب</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="/login">
+                  <i class="bx bx-bar-chart-alt-2 icon"></i>
+                  <span class="text nav-text">تسجيل الدخول</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="bottom-content">
+            <li class="mode">
+              <div class="sun-moon">
+                <i class="bx bx-moon icon moon"></i>
+                <i class="bx bx-sun icon sun"></i>
+              </div>
+              <span class="mode-text text">الوضع الليلي</span>
+              <div class="toggle-switch">
+                <span class="switch"></span>
+              </div>
+            </li>
+          </div>
+        </div>
+      </nav>
+      <section
+        class="welcome"
+        style="
+          width: 50%;
+          transform: translate(50%, -50%);
+          left: 50%;
+          right: 50%;
+          top: 50%;
+        "
+      >
+        <div class="container">
+          <div class="text" style="text-align: center; margin: 30px 0">
+            إنشاء حساب 👋
+          </div>
+          <form id="signupForm">
+            <div class="col-md-6" style="width: 100%">
+              <label for="inputfirstName4" class="form-label">الاسم:</label>
+              <br />
+              <input
+                name="userName"
+                type="text"
+                class="form-control"
+                id="inputfirstName"
+              />
+            </div>
+            <div class="col-md-6" style="width: 100%">
+              <label for="inputemail4" class="form-label">الايمايل:</label>
+              <br />
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                id="inputemail"
+              />
+              <p id="emailError"></p>
+            </div>
+            <div class="col-md-6" style="width: 100%">
+              <label for="inputlastName4" class="form-label">كلمة السر:</label>
+              <br />
+              <input
+                name="password"
+                type="text"
+                class="form-control"
+                id="inputPassword"
+              />
+              <p id="passwordError"></p>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">
+                إنشاء الحساب
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script>
+      signupForm.addEventListener("submit", async (e) => {
+        passwordError.textContent = "";
+        emailError.textContent = "";
+        e.preventDefault();
+
+        const res = await fetch("/signup", {
+          method: "POST",
+          body: JSON.stringify({
+            userName: inputfirstName.value,
+            email: inputemail.value,
+            password: inputPassword.value,
+          }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+        if (data.arrValidationError) {
+          data.arrValidationError.forEach((item) => {
+            if (item.path === "email") {
+              emailError.textContent = "يرجى تقديم عنوان بريد إلكتروني صالح";
+            }
+            if (item.path === "password") {
+              passwordError.textContent =
+                "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل مع حرف واحد كبير ورقم واحد";
+            }
+          });
+        }
+        if (data.currentEmail) {
+          emailError.textContent =
+            "هذا البريد الالكتروني مسجل من قبل , يرجي تسجيل الدخول مباشرة";
+        }
+        if (data.id) {
+          location.assign("/home");
+        }
+      });
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>
